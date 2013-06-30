@@ -83,7 +83,7 @@ function handleMove(evt) {
 	}
 	document.getElementById("x_pos").textContent = "xm : " + touches[touches.length-1].pageX;
 	document.getElementById("y_pos").textContent = "ym : " + touches[touches.length-1].pageY; 
-	document.getElementById("nb_touch").textContent = ongoingTouches.length;
+	document.getElementById("nb_touch").textContent = ongoingTouches.length + " // "+touches[touches.length-1].identifier;
 }
 function handleEnd(evt) {
 	evt.preventDefault();
