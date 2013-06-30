@@ -1,7 +1,7 @@
 var Views = {
 	home   :	{
 			dom :	"<div id='nav_info'>\
-						<p>07</p><p id='nb_touch'></p><p id='x_pos'></p><p id='y_pos'></p>\
+						<p>08</p><p id='nb_touch'></p><p id='x_pos'></p><p id='y_pos'></p>\
 					</div>",
 			init : function(){
 				document.addEventListener("touchstart", handleStart, false);
