@@ -7,16 +7,17 @@ var Views = {
 				document.addEventListener('touchstart',function(event) {
 					TouchX = event.touches[0].pageX;
 					TouchY = event.touches[0].pageY;
-					requestAnimationFrame(Draw_Touch);
+					Draw_Touch();
 				},false);
 				document.addEventListener('touchmove',function(event) {
 					TouchX = event.touches[0].pageX;
 					TouchY = event.touches[0].pageY;
-					requestAnimationFrame(Draw_Touch);
+					Draw_Touch();
 				},false);
 				document.addEventListener('touchend',function(event) {
 					TouchX = event.touches[0].pageX;
 					TouchY = event.touches[0].pageY;
+					Draw_Touch();
 				},false);
 			}		
 	},
