@@ -65,13 +65,13 @@ var View_change = function(){
 	display_View.init();
 }
 function handleStart(evt) {
-  evt.preventDefault();
-  var touches = evt.changedTouches;
-  for (var i=0; i<touches.length; i++) {
-	ongoingTouches.push(touches[i]);
-  }
-  document.getElementById("x_pos").textContent = "x : ";
-document.getElementById("y_pos").textContent = "y : " ; 
+	evt.preventDefault();
+	var touches = evt.changedTouches;
+	for (var i=0; i<touches.length; i++) {
+		ongoingTouches.push(touches[i]);
+	}
+	document.getElementById("x_pos").textContent = "x : " + touches[touches.length-1].pageX;
+	document.getElementById("y_pos").textContent = "y : " + touches[touches.length-1].pageY;
 }
 function handleMove(evt) {
 	evt.preventDefault();
