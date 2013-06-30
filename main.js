@@ -5,20 +5,26 @@ var Views = {
 					</div>",
 			init : function(){
 				document.addEventListener('touchstart',function(event) {
-					TouchX = event.touches[0].pageX;
+					/*TouchX = event.touches[0].pageX;
 					TouchY = event.touches[0].pageY;
-					interval = window.setInterval(Draw_Touch,250);
+					interval = window.setInterval(Draw_Touch,250);*/
 					//Draw_Touch();
+					document.getElementById('x_pos').textContent = "xs : "+event.touches[0].pageX;
+					document.getElementById('y_pos').textContent = "ys : "+event.touches[0].pageY;
 				},false);
 				document.addEventListener('touchmove',function(event) {
-					TouchX = event.touches[0].pageX+"m";
-					TouchY = event.touches[0].pageY+"m";
+					/*TouchX = event.touches[0].pageX+"m";
+					TouchY = event.touches[0].pageY+"m";*/
 					//Draw_Touch_M();
+					document.getElementById('x_pos').textContent = "xm : "+event.touches[0].pageX;
+					document.getElementById('y_pos').textContent = "ym : "+event.touches[0].pageY;
 				},false);
 				document.addEventListener('touchend',function(event) {
-					TouchX = event.touches[0].pageX;
+					/*TouchX = event.touches[0].pageX;
 					TouchY = event.touches[0].pageY;
-					interval = window.clearInterval(interval);
+					interval = window.clearInterval(interval);*/
+					document.getElementById('x_pos').textContent = "xe : "+event.touches[0].pageX;
+					document.getElementById('y_pos').textContent = "ye : "+event.touches[0].pageY;
 				},false);
 			}		
 	},
