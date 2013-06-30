@@ -4,28 +4,11 @@ var Views = {
 						<p id='x_pos'></p><p id='y_pos'></p>\
 					</div>",
 			init : function(){
-				document.addEventListener('touchstart',function(event) {
-					/*TouchX = event.touches[0].pageX;
-					TouchY = event.touches[0].pageY;
-					interval = window.setInterval(Draw_Touch,250);*/
-					//Draw_Touch();
-					document.getElementById('x_pos').textContent = "xs : "+event.touches[0].pageX;
-					document.getElementById('y_pos').textContent = "ys : "+event.touches[0].pageY;
-				},false);
-				document.addEventListener('touchmove',function(event) {
-					/*TouchX = event.touches[0].pageX+"m";
-					TouchY = event.touches[0].pageY+"m";*/
-					//Draw_Touch_M();
-					document.getElementById('x_pos').textContent = "xm : "+event.touches[0].pageX;
-					document.getElementById('y_pos').textContent = "ym : "+event.touches[0].pageY;
-				},false);
-				document.addEventListener('touchend',function(event) {
-					/*TouchX = event.touches[0].pageX;
-					TouchY = event.touches[0].pageY;
-					interval = window.clearInterval(interval);*/
-					document.getElementById('x_pos').textContent = "xe : "+event.touches[0].pageX;
-					document.getElementById('y_pos').textContent = "ye : "+event.touches[0].pageY;
-				},false);
+				document.addEventListener("touchstart", handleStart, false);
+				document.addEventListener("touchend", handleEnd, false);
+				//document.addEventListener("touchcancel", handleCancel, false);
+				//document.addEventListener("touchleave", handleLeave, false);
+				document.addEventListener("touchmove", handleMove, false);
 			}		
 	},
 	home_c :	{
@@ -61,6 +44,7 @@ var display_View = null;
 var TouchX = 0;
 var TouchY = 0;
 var interval = null;
+var ongoingTouches = [];
 window.onload = function(){
 	View_change();
 	/*document.onmousedown = View_change;
@@ -80,26 +64,29 @@ var View_change = function(){
 	body.innerHTML = display_View.dom;
 	display_View.init();
 }
-var Draw_Touch = function(){
-	document.getElementById('x_pos').textContent = "x : "+TouchX;
-	document.getElementById('y_pos').textContent = "y : "+TouchY;
+function handleStart(evt) {
+  evt.preventDefault();
+  var touches = evt.changedTouches;
+  for (var i=0; i<touches.length; i++) {
+	ongoingTouches.push(touches[i]);
+  }
+  
 }
-var Draw_Touch_M = function(){
-	document.getElementById('x_pos').textContent = "xM : "+TouchX;
-	document.getElementById('y_pos').textContent = "yM : "+TouchY;
+function handleMove(evt) {
+	evt.preventDefault();
+	var touches = evt.changedTouches;
+	for (var i=0; i<touches.length; i++) {
+		var idx = ongoingTouchIndexById(touches[i].identifier);
+		ongoingTouches.splice(idx, 1, touches[i]);  // swap in the new touch record
+	}
+	document.getElementById("x_pos").textContent = touches[touches.length-1].pageX;
+	document.getElementById("y_pos").textContent = touches[touches.length-1].pageY; 
 }
-var Draw_Touch_E = function(){
-	document.getElementById('x_pos').textContent = "xE : "+TouchX;
-	document.getElementById('y_pos').textContent = "yE : "+TouchY;
-}
-if ( !window.requestAnimationFrame ) {
-	window.requestAnimationFrame = ( function() {
-		return window.webkitRequestAnimationFrame	||
-		window.mozRequestAnimationFrame				|| // comment out if FF4 is slow (it caps framerate at ~30fps: https://bugzilla.mozilla.org/show_bug.cgi?id=630127)
-		window.oRequestAnimationFrame				||
-		window.msRequestAnimationFrame				||
-		function( /* function FrameRequestCallback */ callback, /* DOMElement Element */ element ) {
-			window.setTimeout( callback, 30 );
-		};
-	} )();
+function handleEnd(evt) {
+  evt.preventDefault();
+  var touches = evt.changedTouches;
+  for (var i=0; i<touches.length; i++) {
+    var idx = ongoingTouchIndexById(touches[i].identifier);
+   ongoingTouches.splice(i, 1);  // remove it; we're done
+  }
 }
