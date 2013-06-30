@@ -7,17 +7,18 @@ var Views = {
 				document.addEventListener('touchstart',function(event) {
 					TouchX = event.touches[0].pageX;
 					TouchY = event.touches[0].pageY;
-					Draw_Touch();
+					interval = window.setInterval(Draw_Touch,250);
+					//Draw_Touch();
 				},false);
 				document.addEventListener('touchmove',function(event) {
 					TouchX = event.touches[0].pageX;
 					TouchY = event.touches[0].pageY;
-					Draw_Touch_M();
+					//Draw_Touch_M();
 				},false);
 				document.addEventListener('touchend',function(event) {
 					TouchX = event.touches[0].pageX;
 					TouchY = event.touches[0].pageY;
-					Draw_Touch_E();
+					interval = window.clearInterval(interval);
 				},false);
 			}		
 	},
@@ -53,6 +54,7 @@ var Views = {
 var display_View = null;
 var TouchX = 0;
 var TouchY = 0;
+var interval = null;
 window.onload = function(){
 	View_change();
 	/*document.onmousedown = View_change;
