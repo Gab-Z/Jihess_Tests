@@ -12,7 +12,7 @@ var Views = {
 				document.addEventListener('touchmove',function(event) {
 					TouchX = event.touches[0].pageX;
 					TouchY = event.touches[0].pageY;
-					Draw_Touch();
+					Draw_Touch_M();
 				},false);
 				document.addEventListener('touchend',function(event) {
 					TouchX = event.touches[0].pageX;
@@ -75,6 +75,10 @@ var View_change = function(){
 var Draw_Touch = function(){
 	document.getElementById('x_pos').textContent = "x : "+TouchX;
 	document.getElementById('y_pos').textContent = "y : "+TouchY;
+}
+var Draw_Touch_M = function(){
+	document.getElementById('x_pos').textContent = "xM : "+TouchX;
+	document.getElementById('y_pos').textContent = "yM : "+TouchY;
 }
 if ( !window.requestAnimationFrame ) {
 	window.requestAnimationFrame = ( function() {
