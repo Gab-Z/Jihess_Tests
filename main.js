@@ -1,7 +1,7 @@
 var Views = {
 	home   :	{
 			dom :	"<div id='nav_info'>\
-						<p>01</p><p id='x_pos'></p><p id='y_pos'></p>\
+						<p>02</p><p id='x_pos'></p><p id='y_pos'></p>\
 					</div>",
 			init : function(){
 				document.addEventListener("touchstart", handleStart, false);
@@ -80,18 +80,18 @@ function handleMove(evt) {
 		var idx = ongoingTouchIndexById(touches[i].identifier);
 		ongoingTouches.splice(idx, 1, touches[i]);  // swap in the new touch record
 	}
-	document.getElementById("x_pos").textContent = "xm : " + evt.touches[0].pageX;
-	document.getElementById("y_pos").textContent = "ym : " + evt.touches[0].pageY; 
+	document.getElementById("x_pos").textContent = "xm : " + touches[touches.length-1].pageX;
+	document.getElementById("y_pos").textContent = "ym : " + touches[touches.length-1].pageY; 
 }
 function handleEnd(evt) {
-  evt.preventDefault();
-  var touches = evt.changedTouches;
-  for (var i=0; i<touches.length; i++) {
-    var idx = ongoingTouchIndexById(touches[i].identifier);
-   ongoingTouches.splice(i, 1);  // remove it; we're done
-  }
-  document.getElementById("x_pos").textContent = "out";
-	document.getElementById("y_pos").textContent = "out";
+	evt.preventDefault();
+	var touches = evt.changedTouches;
+	for (var i=0; i<touches.length; i++) {
+		var idx = ongoingTouchIndexById(touches[i].identifier);
+		ongoingTouches.splice(i, 1);  // remove it; we're done
+	}
+	document.getElementById("x_pos").textContent = "xe : " + touches[touches.length-1].pageX;
+	document.getElementById("y_pos").textContent = "ye : " + touches[touches.length-1].pageY; 
 }
 function ongoingTouchIndexById(idToFind) {
 	for (var i=0; i<ongoingTouches.length; i++) {
