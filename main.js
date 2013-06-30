@@ -1,7 +1,7 @@
 var Views = {
 	home   :	{
 			dom :	"<div id='nav_info'>\
-						<p>04</p><p id='nb_touch'></p><p id='x_pos'></p><p id='y_pos'></p>\
+						<p>05</p><p id='nb_touch'></p><p id='x_pos'></p><p id='y_pos'></p>\
 					</div>",
 			init : function(){
 				document.addEventListener("touchstart", handleStart, false);
@@ -85,7 +85,7 @@ function handleMove(evt) {
 	}
 	document.getElementById("x_pos").textContent = "xm : " + touches[touches.length-1].pageX;
 	document.getElementById("y_pos").textContent = "ym : " + touches[touches.length-1].pageY; 
-	document.getElementById("nb_touch").textContent = evt.touches.length;
+	document.getElementById("nb_touch").textContent = nT;
 }
 function handleEnd(evt) {
 	evt.preventDefault();
