@@ -1,7 +1,7 @@
 var Views = {
 	home   :	{
 			dom :	"<div id='nav_info'>\
-						<p id='x_pos'></p><p id='y_pos'></p>\
+						<p>01</p><p id='x_pos'></p><p id='y_pos'></p>\
 					</div>",
 			init : function(){
 				document.addEventListener("touchstart", handleStart, false);
@@ -92,4 +92,14 @@ function handleEnd(evt) {
   }
   document.getElementById("x_pos").textContent = "out";
 	document.getElementById("y_pos").textContent = "out";
+}
+function ongoingTouchIndexById(idToFind) {
+	for (var i=0; i<ongoingTouches.length; i++) {
+		var id = ongoingTouches[i].identifier;
+
+		if (id == idToFind) {
+			return i;
+		}
+	}
+	return -1;    // toucher non trouvé
 }
