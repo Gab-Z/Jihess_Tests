@@ -70,7 +70,8 @@ function handleStart(evt) {
   for (var i=0; i<touches.length; i++) {
 	ongoingTouches.push(touches[i]);
   }
-  
+  document.getElementById("x_pos").textContent = "x : ";
+document.getElementById("y_pos").textContent = "y : " ; 
 }
 function handleMove(evt) {
 	evt.preventDefault();
