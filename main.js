@@ -1,14 +1,14 @@
 var Views = {
 	home   :	{
 			dom :	"<div id='nav_info'>\
-						<p>09</p><p id='nb_touch'></p><p id='x_pos'></p><p id='y_pos'></p>\
+						<p>10</p><p id='nb_touch'></p><p id='x_pos'></p><p id='y_pos'></p>\
 					</div>",
 			init : function(){
-				//document.addEventListener("touchstart", handleStart, false);
-				//document.addEventListener("touchend", handleEnd, false);
+				document.addEventListener("touchstart", handleStart, false);
+				document.addEventListener("touchend", handleEnd, false);
 				//document.addEventListener("touchcancel", handleCancel, false);
 				//document.addEventListener("touchleave", handleLeave, false);
-				document.addEventListener("touchmove", handleMove, false);
+				//document.addEventListener("touchmove", handleMove, false);
 			}		
 	},
 	home_c :	{
@@ -45,6 +45,7 @@ var TouchX = 0;
 var TouchY = 0;
 var interval = null;
 var ongoingTouches = [];
+var nb = 0;
 window.onload = function(){
 	View_change();
 	/*document.onmousedown = View_change;
@@ -66,13 +67,14 @@ var View_change = function(){
 }
 function handleStart(evt) {
 	evt.preventDefault();
-	var touches = evt.changedTouches;
+	/*var touches = evt.changedTouches;
 	for (var i=0; i<touches.length; i++) {
 		ongoingTouches.push(touches[i]);
 	}
 	document.getElementById("x_pos").textContent = "x : " + touches[touches.length-1].pageX;
-	document.getElementById("y_pos").textContent = "y : " + touches[touches.length-1].pageY;
-	document.getElementById("nb_touch").textContent = ongoingTouches.length;
+	document.getElementById("y_pos").textContent = "y : " + touches[touches.length-1].pageY;*/
+	nb++;
+	document.getElementById("nb_touch").textContent = nb;
 }
 function handleMove(evt) {
 	evt.preventDefault();
@@ -87,14 +89,15 @@ function handleMove(evt) {
 }
 function handleEnd(evt) {
 	evt.preventDefault();
-	var touches = evt.changedTouches;
+	/*var touches = evt.changedTouches;
 	for (var i=0; i<touches.length; i++) {
 		var idx = ongoingTouchIndexById(touches[i].identifier);
 		ongoingTouches.splice(i, 1);  // remove it; we're done
 	}
 	document.getElementById("x_pos").textContent = "xe : " + touches[touches.length-1].pageX;
-	document.getElementById("y_pos").textContent = "ye : " + touches[touches.length-1].pageY; 
-	document.getElementById("nb_touch").textContent = ongoingTouches.length;
+	document.getElementById("y_pos").textContent = "ye : " + touches[touches.length-1].pageY; */
+	nb+=-1;
+	document.getElementById("nb_touch").textContent = nb;
 }
 function ongoingTouchIndexById(idToFind) {
 	for (var i=0; i<ongoingTouches.length; i++) {
