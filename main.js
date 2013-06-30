@@ -74,14 +74,14 @@ function handleStart(evt) {
 	document.getElementById("y_pos").textContent = "y : " + touches[touches.length-1].pageY;
 }
 function handleMove(evt) {
-	evt.preventDefault();
+	//evt.preventDefault();
 	var touches = evt.changedTouches;
 	for (var i=0; i<touches.length; i++) {
 		var idx = ongoingTouchIndexById(touches[i].identifier);
 		ongoingTouches.splice(idx, 1, touches[i]);  // swap in the new touch record
 	}
-	document.getElementById("x_pos").textContent = "x : " + touches[touches.length-1].pageX;
-	document.getElementById("y_pos").textContent = "y : " + touches[touches.length-1].pageY; 
+	document.getElementById("x_pos").textContent = "x : " + touches[0].pageX;
+	document.getElementById("y_pos").textContent = "y : " + touches[0].pageY; 
 }
 function handleEnd(evt) {
   evt.preventDefault();
@@ -90,4 +90,6 @@ function handleEnd(evt) {
     var idx = ongoingTouchIndexById(touches[i].identifier);
    ongoingTouches.splice(i, 1);  // remove it; we're done
   }
+  document.getElementById("x_pos").textContent = "out";
+	document.getElementById("y_pos").textContent = "out";
 }
