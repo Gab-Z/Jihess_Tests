@@ -45,6 +45,7 @@ var TouchX = 0;
 var TouchY = 0;
 var interval = null;
 var ongoingTouches = [];
+var nT = 0;
 window.onload = function(){
 	View_change();
 	/*document.onmousedown = View_change;
@@ -70,9 +71,10 @@ function handleStart(evt) {
 	for (var i=0; i<touches.length; i++) {
 		ongoingTouches.push(touches[i]);
 	}
+	nT++;
 	document.getElementById("x_pos").textContent = "x : " + touches[touches.length-1].pageX;
 	document.getElementById("y_pos").textContent = "y : " + touches[touches.length-1].pageY;
-	document.getElementById("nb_touch").textContent = evt.touches.length;
+	document.getElementById("nb_touch").textContent = nT;
 }
 function handleMove(evt) {
 	evt.preventDefault();
@@ -92,9 +94,10 @@ function handleEnd(evt) {
 		var idx = ongoingTouchIndexById(touches[i].identifier);
 		ongoingTouches.splice(i, 1);  // remove it; we're done
 	}
+	nT+=-1;
 	document.getElementById("x_pos").textContent = "xe : " + touches[touches.length-1].pageX;
 	document.getElementById("y_pos").textContent = "ye : " + touches[touches.length-1].pageY; 
-	document.getElementById("nb_touch").textContent = evt.touches.length;
+	document.getElementById("nb_touch").textContent = nT;
 }
 function ongoingTouchIndexById(idToFind) {
 	for (var i=0; i<ongoingTouches.length; i++) {
