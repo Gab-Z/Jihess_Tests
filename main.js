@@ -1,5 +1,26 @@
 var Views = {
-	home :	{
+	home   :	{
+			dom :	"<div id='nav_info'>\
+						<p id='x_pos'></p><p id='y_pos'></p>\
+					</div>",
+			init : function(){
+				document.addEventListener('touchstart',function(event) {
+					TouchX = event.touches[0].pageX;
+					TouchY = event.touches[0].pageY;
+					requestAnimationFrame(Draw_Touch);
+				},false);
+				document.addEventListener('touchmove',function(event) {
+					TouchX = event.touches[0].pageX;
+					TouchY = event.touches[0].pageY;
+					requestAnimationFrame(Draw_Touch);
+				},false);
+				document.addEventListener('touchend',function(event) {
+					TouchX = event.touches[0].pageX;
+					TouchY = event.touches[0].pageY;
+				},false);
+			}		
+	},
+	home_c :	{
 			dom :	"<div class='page_container' id='first_canvas'>\
 						<canvas id='canvas' ></canvas>\
 					</div>",
@@ -18,7 +39,7 @@ var Views = {
 						ctx.lineTo(cv_W,cv_H);
 						ctx.stroke();
 					}
-			},
+	},
 	p_one : {
 			dom :	"<div class='page_container' id='page_one'>\
 						<h1> Hello, this a text page </h1>\
@@ -29,15 +50,14 @@ var Views = {
 			}
 }
 var display_View = null;
+var TouchX = 0;
+var TouchY = 0;
 window.onload = function(){
 	View_change();
-	if(document.onmousedown){
-		alert('pop');
-	}
-	document.onmousedown = View_change;
+	/*document.onmousedown = View_change;
 	document.addEventListener('touchend',function(event) {
 	  View_change;
-	},false);
+	},false);*/
 }
 var View_change = function(){
 	if(display_View == Views.home){
@@ -50,4 +70,19 @@ var View_change = function(){
 	body.removeChild(old_content);
 	body.innerHTML = display_View.dom;
 	display_View.init();
+}
+var Draw_Touch = function(){
+	document.getElementById('x_pos').textContent = "x : "+TouchX;
+	document.getElementById('y_pos').textContent = "y : "+TouchY;
+}
+if ( !window.requestAnimationFrame ) {
+	window.requestAnimationFrame = ( function() {
+		return window.webkitRequestAnimationFrame	||
+		window.mozRequestAnimationFrame				|| // comment out if FF4 is slow (it caps framerate at ~30fps: https://bugzilla.mozilla.org/show_bug.cgi?id=630127)
+		window.oRequestAnimationFrame				||
+		window.msRequestAnimationFrame				||
+		function( /* function FrameRequestCallback */ callback, /* DOMElement Element */ element ) {
+			window.setTimeout( callback, 30 );
+		};
+	} )();
 }
