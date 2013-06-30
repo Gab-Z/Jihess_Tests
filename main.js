@@ -79,8 +79,8 @@ function handleMove(evt) {
 		var idx = ongoingTouchIndexById(touches[i].identifier);
 		ongoingTouches.splice(idx, 1, touches[i]);  // swap in the new touch record
 	}
-	document.getElementById("x_pos").textContent = touches[touches.length-1].pageX;
-	document.getElementById("y_pos").textContent = touches[touches.length-1].pageY; 
+	document.getElementById("x_pos").textContent = "x : " + touches[touches.length-1].pageX;
+	document.getElementById("y_pos").textContent = "y : " + touches[touches.length-1].pageY; 
 }
 function handleEnd(evt) {
   evt.preventDefault();
