@@ -1,7 +1,7 @@
 var Views = {
 	home   :	{
 			dom :	"<div id='nav_info'>\
-						<p>05</p><p id='nb_touch'></p><p id='x_pos'></p><p id='y_pos'></p>\
+						<p>06</p><p id='nb_touch'></p><p id='x_pos'></p><p id='y_pos'></p>\
 					</div>",
 			init : function(){
 				document.addEventListener("touchstart", handleStart, false);
@@ -66,7 +66,7 @@ var View_change = function(){
 	display_View.init();
 }
 function handleStart(evt) {
-	evt.preventDefault();
+	//evt.preventDefault();
 	var touches = evt.changedTouches;
 	for (var i=0; i<touches.length; i++) {
 		ongoingTouches.push(touches[i]);
@@ -77,7 +77,7 @@ function handleStart(evt) {
 	document.getElementById("nb_touch").textContent = nT;
 }
 function handleMove(evt) {
-	evt.preventDefault();
+	//evt.preventDefault();
 	var touches = evt.changedTouches;
 	for (var i=0; i<touches.length; i++) {
 		var idx = ongoingTouchIndexById(touches[i].identifier);
@@ -88,7 +88,7 @@ function handleMove(evt) {
 	document.getElementById("nb_touch").textContent = nT +" / "+evt.touches.length;
 }
 function handleEnd(evt) {
-	evt.preventDefault();
+	//evt.preventDefault();
 	var touches = evt.changedTouches;
 	for (var i=0; i<touches.length; i++) {
 		var idx = ongoingTouchIndexById(touches[i].identifier);
