@@ -11,8 +11,8 @@ var Views = {
 					//Draw_Touch();
 				},false);
 				document.addEventListener('touchmove',function(event) {
-					TouchX = event.touches[0].pageX;
-					TouchY = event.touches[0].pageY;
+					TouchX = event.touches[0].pageX+"m";
+					TouchY = event.touches[0].pageY+"m";
 					//Draw_Touch_M();
 				},false);
 				document.addEventListener('touchend',function(event) {
