@@ -9,6 +9,7 @@ var Views = {
 				//document.addEventListener("touchcancel", handleCancel, false);
 				//document.addEventListener("touchleave", handleLeave, false);
 				//document.addEventListener("touchmove", handleMove, false);
+				launchRequest(callback_test,"argument=ask");
 			}		
 	},
 	home_c :	{
@@ -108,4 +109,42 @@ function ongoingTouchIndexById(idToFind) {
 		}
 	}
 	return -1;    // toucher non trouvé
+}
+function getXMLHttpRequest() {
+	var xhr = null;
+	
+	if (window.XMLHttpRequest || window.ActiveXObject) {
+		if (window.ActiveXObject) {
+			try {
+				xhr = new ActiveXObject("Msxml2.XMLHTTP");
+			} catch(e) {
+				xhr = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		} else {
+			xhr = new XMLHttpRequest(); 
+		}
+	} else {
+		alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
+		return null;
+	}
+	
+	return xhr;
+}
+function launchRequest(callback,send_data){
+	var	xhr = getXMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			callback(xhr.responseText);
+		}
+	};
+	xhr.open("POST", "http://gabz.org/andro_test.php", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send(send_data);
+}
+function callback_test(sData){
+	if(sData == "err"){
+		alert('err');
+	}else{
+		alert(sData);
+	}
 }
