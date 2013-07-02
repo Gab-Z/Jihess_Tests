@@ -77,7 +77,7 @@ var TouchX = 0;
 var TouchY = 0;
 var interval = null;
 var ongoingTouches = [];
-var nb = 0;
+var frame = 0;
 var mode = 0;
 window.onload = function(){
 	View_change();
@@ -106,8 +106,8 @@ function handleStart(evt) {
 	}
 	document.getElementById("x_pos").textContent = "x : " + touches[touches.length-1].pageX;
 	document.getElementById("y_pos").textContent = "y : " + touches[touches.length-1].pageY;*/
-	nb++;
-	document.getElementById("nb_touch").textContent = nb;
+	
+	
 }
 function handleMove(evt) {
 	evt.preventDefault();
@@ -197,11 +197,15 @@ function play_animation(){
 		pY = 0;
 	ctx.clearRect(0,0,W,H);
 	for(i=0;i<nb;i++){
-		ctx.drawImage(bufferCanvas, 0,0,30,40,pX*30,pY*40,30,40);
+		ctx.drawImage(bufferCanvas, frame*30,0,30,40,pX*30,pY*40,30,40);
 		pX++;
-		if(pX > nbX){
+		if(pX >= nbX){
 			pX = 0;
-			pY ++;
+			pY++;
+		}
+		frame++;
+		if(frame > 9){
+			frame =0;
 		}
 	}
 	
