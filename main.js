@@ -32,18 +32,18 @@ var Views = {
 						var opt = document.getElementById('options');
 						opt.style.backgroundColor = '#D4B1ED';
 						opt.style.marginTop = 0;
-						opt.style.height = '20px';
+						opt.style.height = '60px';
 						opt.onclick = function(){switch_animation_mode()};
 						cnv = document.getElementById('canvas');
 						ctx = cnv.getContext('2d');
 						cv_W = window.innerWidth - 10;
-						cv_H = window.innerHeight - 20;
+						cv_H = window.innerHeight - 65;
 						cnv.width  = cv_W;
 						cnv.height = cv_H;
 						cnv.style.marginLeft = 5;
 						cnv.style.marginTop = 0;
-						cnv.style.borderStyle="solid";
-						cnv.style.borderWidth="4px";
+						//cnv.style.borderStyle="solid";
+						//cnv.style.borderWidth="4px";
 						ctx.fillStyle="#F1DAAA";
 						ctx.fillRect(0,0,cv_W,cv_H);
 						
@@ -183,6 +183,7 @@ function play_animation(){
 	//requestAnimationFrame(play_animation);
 }
 function switch_animation_mode(){
+	alert('pop');
 	if(mode == 0){
 		mode = 1;
 	}else{
