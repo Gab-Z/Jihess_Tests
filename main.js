@@ -25,7 +25,7 @@ var Views = {
 	},
 	home :	{
 			dom :	"<div class='page_container' id='first_canvas'>\
-						<div id='options'></div>\
+						<div id='options'><button id='bt_plus'>+</button><button id='bt_moins'>-</button><span id='sprite_counter'></span></div>\
 						<canvas id='canvas' ></canvas>\
 					</div>",
 			init :	function(){
@@ -33,7 +33,18 @@ var Views = {
 						opt.style.backgroundColor = '#D4B1ED';
 						opt.style.marginTop = 0;
 						opt.style.height = '60px';
-						opt.onclick = function(){switch_animation_mode()};
+						//opt.onclick = function(){switch_animation_mode()};
+						var plus = document.getElementById('bt_plus');
+						plus.onclick = function(){	var ct = document.getElementById('sprite_counter'),
+														nb = parseFloat(ct.textContent);
+													ct.textContent = nb+1;
+												}
+						var moins = document.getElementById('bt_moins');
+						plus.onclick = function(){	var ct = document.getElementById('sprite_counter'),
+														nb = parseFloat(ct.textContent);
+													ct.textContent = nb+-1;
+												}
+						
 						cnv = document.getElementById('canvas');
 						ctx = cnv.getContext('2d');
 						cv_W = window.innerWidth - 10;
