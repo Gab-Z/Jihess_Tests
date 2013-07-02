@@ -42,7 +42,8 @@ var Views = {
 						cnv.height = cv_H;
 						cnv.style.marginLeft = 5;
 						cnv.style.marginTop = 0;
-						
+						ctx.fillStyle="#F1DAAA";
+						ctx.fillRect(0,0,cv_W,cv_H);
 						
 						spritesheet = new Image();
 						spritesheet.onload = function(){start_animation()};
