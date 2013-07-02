@@ -14,6 +14,7 @@ var Views = {
 	},
 	home :	{
 			dom :	"<div class='page_container' id='first_canvas'>\
+						<div id='options'></div>\
 						<canvas id='canvas' ></canvas>\
 					</div>",
 			init :	function(){
@@ -24,9 +25,12 @@ var Views = {
 						cnv.width  = cv_W;
 						cnv.height = cv_H;
 						cnv.style.marginLeft = 5;
-						cnv.style.marginTop = 5;
+						cnv.style.marginTop = 30;
+						var opt = document.getElementById('options');
+						opt.style.backgroundColor = '#D4B1ED';
+						opt.style.margin = 0;
 						spritesheet = new Image();
-						spritesheet.onload = function(){alert('loaded');};
+						spritesheet.onload = function(){start_animation()};
 						spritesheet.src = "Media/spritesheet.png";
 					}
 	},
@@ -145,4 +149,12 @@ function callback_test(sData){
 	}else{
 		alert(sData);
 	}
+}
+function start_animation(){
+	bufferCanvas = document.createElement('canvas'),
+	bufferContext = bufferCanvas.getContext('2d');
+	bufferCanvas.width = spritesheet.width;
+	bufferCanvas.height = spritesheet.height;
+	bufferContext.drawImage(spritesheet, 0,0);
+	
 }
