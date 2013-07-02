@@ -49,7 +49,7 @@ var Views = {
 						
 						spritesheet = new Image();
 						spritesheet.onload = function(){start_animation()};
-						//spritesheet.src = "Media/spritesheet.png";
+						spritesheet.src = "Media/spritesheet.png";
 					}
 	},
 	p_one : {
@@ -180,7 +180,7 @@ function start_animation(){
 function play_animation(){
 	ctx.drawImage(bufferCanvas, 0,0,30,40,0,0,30,40);
 	
-	requestAnimationFrame(play_animation);
+	//requestAnimationFrame(play_animation);
 }
 function switch_animation_mode(){
 	if(mode == 0){
