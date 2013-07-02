@@ -40,7 +40,7 @@ var Views = {
 													ct.textContent = nb+1;
 												}
 						var moins = document.getElementById('bt_moins');
-						plus.onclick = function(){	var ct = document.getElementById('sprite_counter'),
+						moins.onclick = function(){	var ct = document.getElementById('sprite_counter'),
 														nb = parseFloat(ct.textContent);
 													ct.textContent = nb+-1;
 												}
@@ -189,9 +189,13 @@ function start_animation(){
 	requestAnimationFrame(play_animation);
 }
 function play_animation(){
-	ctx.drawImage(bufferCanvas, 0,0,30,40,0,0,30,40);
+	var nb = parseFloat(document.getElementById('sprite_counter').textContent);
+	for(i=0;i<nb;i++){
+		ctx.drawImage(bufferCanvas, 0,0,30,40,i*30,0,30,40);
+	}
 	
-	//requestAnimationFrame(play_animation);
+	
+	requestAnimationFrame(play_animation);
 }
 function switch_animation_mode(){
 	alert('pop');
