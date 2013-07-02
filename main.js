@@ -37,12 +37,12 @@ var Views = {
 						var plus = document.getElementById('bt_plus');
 						plus.onclick = function(){	var ct = document.getElementById('sprite_counter'),
 														nb = parseFloat(ct.textContent);
-													ct.textContent = nb+1;
+													ct.textContent = nb+10;
 												}
 						var moins = document.getElementById('bt_moins');
 						moins.onclick = function(){	var ct = document.getElementById('sprite_counter'),
 														nb = parseFloat(ct.textContent);
-													ct.textContent = nb+-1;
+													ct.textContent = nb+-10;
 												}
 						
 						cnv = document.getElementById('canvas');
