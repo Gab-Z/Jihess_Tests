@@ -25,7 +25,7 @@ var Views = {
 	},
 	home :	{
 			dom :	"<div class='page_container' id='first_canvas'>\
-						<div id='options'><button id='bt_plus'>+</button><button id='bt_moins'>-</button><span id='sprite_counter'></span></div>\
+						<div id='options'><button id='bt_plus'>+</button><button id='bt_moins'>-</button><span id='sprite_counter'>1</span></div>\
 						<canvas id='canvas' ></canvas>\
 					</div>",
 			init :	function(){
