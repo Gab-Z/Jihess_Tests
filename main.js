@@ -18,17 +18,20 @@ var Views = {
 						<canvas id='canvas' ></canvas>\
 					</div>",
 			init :	function(){
+						var opt = document.getElementById('options');
+						opt.style.backgroundColor = '#D4B1ED';
+						opt.style.marginTop = 0;
+						opt.style.height = '20px';
 						var cnv = document.getElementById('canvas'),
 							ctx = cnv.getContext('2d'),
 							cv_W = window.innerWidth - 10,
-							cv_H = window.innerHeight - 10;
+							cv_H = window.innerHeight - 20;
 						cnv.width  = cv_W;
 						cnv.height = cv_H;
 						cnv.style.marginLeft = 5;
-						cnv.style.marginTop = 30;
-						var opt = document.getElementById('options');
-						opt.style.backgroundColor = '#D4B1ED';
-						opt.style.margin = 0;
+						cnv.style.marginTop = 0;
+						
+						
 						spritesheet = new Image();
 						spritesheet.onload = function(){start_animation()};
 						spritesheet.src = "Media/spritesheet.png";
