@@ -1,5 +1,5 @@
 var Views = {
-	home   :	{
+	home_c   :	{
 			dom :	"<div id='nav_info'>\
 						<p>10</p><p id='nb_touch'></p><p id='x_pos'></p><p id='y_pos'></p>\
 					</div>",
@@ -12,7 +12,7 @@ var Views = {
 				launchRequest(callback_test,"argument=ask");
 			}		
 	},
-	home_c :	{
+	home :	{
 			dom :	"<div class='page_container' id='first_canvas'>\
 						<canvas id='canvas' ></canvas>\
 					</div>",
@@ -25,11 +25,9 @@ var Views = {
 						cnv.height = cv_H;
 						cnv.style.marginLeft = 5;
 						cnv.style.marginTop = 5;
-						ctx.lineWidth = .5;
-						ctx.beginPath();
-						ctx.moveTo(0,0);
-						ctx.lineTo(cv_W,cv_H);
-						ctx.stroke();
+						spritesheet = new Image();
+						spritesheet.onload = function(){alert('loaded');};
+						spritesheet.src = "Media/spritesheet.png";
 					}
 	},
 	p_one : {
