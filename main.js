@@ -1,3 +1,14 @@
+if ( !window.requestAnimationFrame ) {
+	window.requestAnimationFrame = ( function() {
+		return window.webkitRequestAnimationFrame ||
+		window.mozRequestAnimationFrame || // comment out if FF4 is slow (it caps framerate at ~30fps: https://bugzilla.mozilla.org/show_bug.cgi?id=630127)
+		window.oRequestAnimationFrame ||
+		window.msRequestAnimationFrame ||
+		function( /* function FrameRequestCallback */ callback, /* DOMElement Element */ element ) {
+			window.setTimeout( callback, 60 );
+		};
+	} )();
+}
 var Views = {
 	home_c   :	{
 			dom :	"<div id='nav_info'>\
@@ -22,10 +33,11 @@ var Views = {
 						opt.style.backgroundColor = '#D4B1ED';
 						opt.style.marginTop = 0;
 						opt.style.height = '20px';
-						var cnv = document.getElementById('canvas'),
-							ctx = cnv.getContext('2d'),
-							cv_W = window.innerWidth - 10,
-							cv_H = window.innerHeight - 20;
+						opt.onclick = function(){switch_animation_mode()};
+						cnv = document.getElementById('canvas');
+						ctx = cnv.getContext('2d');
+						cv_W = window.innerWidth - 10;
+						cv_H = window.innerHeight - 20;
 						cnv.width  = cv_W;
 						cnv.height = cv_H;
 						cnv.style.marginLeft = 5;
@@ -52,6 +64,7 @@ var TouchY = 0;
 var interval = null;
 var ongoingTouches = [];
 var nb = 0;
+var mode = 0;
 window.onload = function(){
 	View_change();
 	/*document.onmousedown = View_change;
@@ -159,5 +172,17 @@ function start_animation(){
 	bufferCanvas.width = spritesheet.width;
 	bufferCanvas.height = spritesheet.height;
 	bufferContext.drawImage(spritesheet, 0,0);
+	requestAnimationFrame(play_animation);
+}
+function play_animation(){
+	ctx.drawImage(bufferCanvas, 0,0,30,40,0,0,30,40);
 	
+	requestAnimationFrame(play_animation);
+}
+function switch_animation_mode(){
+	if(mode == 0){
+		mode = 1;
+	}else{
+		mode = 0;
+	}
 }
