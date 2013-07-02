@@ -189,9 +189,21 @@ function start_animation(){
 	requestAnimationFrame(play_animation);
 }
 function play_animation(){
-	var nb = parseFloat(document.getElementById('sprite_counter').textContent);
+	var W = cnv.width,
+		H = cnv.height,
+		nbX = Math.floor(W / 30),
+		nb = parseFloat(document.getElementById('sprite_counter').textContent);
+		pX = 0;
+		pY = 0;
+	ctx.clearRect(0,0,W,H);
+	var 
 	for(i=0;i<nb;i++){
-		ctx.drawImage(bufferCanvas, 0,0,30,40,i*30,0,30,40);
+		ctx.drawImage(bufferCanvas, 0,0,30,40,pX*30,pY*40,30,40);
+		pX++;
+		if(pX > nbX){
+			pX = 0;
+			pY ++;
+		}
 	}
 	
 	
